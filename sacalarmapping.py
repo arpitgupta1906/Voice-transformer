@@ -20,6 +20,8 @@ rate1, wav_data1 = wavfile.read(FILENAME1)
 rate2, wav_data2 = wavfile.read(FILENAME2)  # isko dekhna hai
 rate3, wav_data3 = wavfile.read(FILENAME3)
 
+# CALL SMOOTING
+
 L1 = len(wav_data1)
 f1 = np.linspace(0, 8000, L1)
 x1 = np.fft.fft(wav_data1)
@@ -50,3 +52,5 @@ L3 = len(wav_data3)
 f3 = np.linspace(0, 8000, L3)
 x3 = np.fft.fft(wav_data3)
 x3 = x3 * Ratio
+
+# Take IFFT of x3
