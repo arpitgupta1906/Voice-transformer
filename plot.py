@@ -8,15 +8,7 @@ from scipy.io import wavfile
 
 FILENAME1 = "output1.wav"
 
+rate, data = wavfile.read(FILENAME1)
 
-spf = wave.open(FILENAME1, 'r')
-signal = spf.readframes(-1)
-signal = np.fromstring(signal, 'Int16')
-if spf.getnchannels() == 2:
-    print('Just mono files')
-    sys.exit(0)
-
-plt.figure(1)
-plt.title('Signal Wave...')
-plt.plot(signal)
+plt.plot(data)
 plt.show()
