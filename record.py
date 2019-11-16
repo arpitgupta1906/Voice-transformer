@@ -8,7 +8,7 @@ CHANNELS = 1
 RATE = 8000
 RECORD_SECONDS = 4
 
-FILENAME1 = "output2.wav"
+FILENAME1 = "target.wav"
 
 
 

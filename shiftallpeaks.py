@@ -9,17 +9,17 @@ def shiftallpeaks(peaks1,peaks2,wav_data3):
 
     n=len(peaks1)
     x3=np.fft.fft(wav_data3)
-    new=np.zeros(len(x3)/2)
+    new=np.zeros(len(x3)//2)
     new=new.astype(dtype=np.complex)
 
     Peaks1=np.zeros(n+2)
     Peaks1[1:n+1]=peaks1
-    Peaks1[n+1]=len(x3)/2
+    Peaks1[n+1]=len(x3)//2
     Peaks1=Peaks1.astype(np.int16)
 
     Peaks2=np.zeros(n+2)
     Peaks2[1:n+1]=peaks2
-    Peaks2[n+1]=len(x3)/2
+    Peaks2[n+1]=len(x3)//2
 
     Peaks2=Peaks2.astype(np.int16)
 

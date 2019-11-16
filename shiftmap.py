@@ -81,12 +81,12 @@ def shiftlengthbetweenpeaks(wav_data1,peaks1,peaks2):
     for i in range(0,n):
         range1[i+1] = peaks1[i] - range1[i]
         range2[i+1] = peaks2[i] - range2[i]
-    print range1
-    print range2
+    # print range1
+    # print range2
 
 #find the scale to shrink or strech
     scale = range1/range2
-    print scale
+    #print scale
     range1 = range1.astype(np.int16)
     range2 = range2.astype(np.int16)
 
