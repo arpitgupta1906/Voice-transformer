@@ -10,6 +10,6 @@ def dataSymmetric(new):
     x3 = x3.astype(dtype=np.complex)
     x3[0] = new[0]
     for i in range(1,L):
-        x3[i]=new[i];
-        x3[2*l-i]=complex(real(new[i]),-imag(new[i]))
+        x3[i]=new[i]
+        x3[2*L-i]=complex(real(new[i]),-imag(new[i]))
     plot(x3)

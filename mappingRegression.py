@@ -29,16 +29,16 @@ def regressionCoefficients(wav_data):
     L1 = len(wav1)
 
     fft1 = np.linspace(0, 8000, L1)
-    f1 = np.linspace(0, 4000, L1 / 2)
+    f1 = np.linspace(0, 4000, L1 // 2)
 
     xx1 = np.fft.fft(wav1)
-    xx1 = np.abs(real(xx1)) / L1
+    xx1 = np.abs(real(xx1)) // L1
 
-    x1 = 2 * xx1[0:L1 / 2]
+    x1 = 2 * xx1[0:L1 // 2]
 
     max1 = max(x1)
 
-    x1 = 2 * xx1[0:L1 / 2]
+    x1 = 2 * xx1[0:L1 // 2]
     max1 = max(x1)
 
     # find peaks above threshold of 20%
@@ -57,9 +57,9 @@ def regressionCoefficients(wav_data):
 
 
 # input in waves here
-FILENAME1 = "output1.wav"
-FILENAME2 = "output2.wav"
-FILENAME3 = "output3.wav"
+FILENAME1 = "source.wav"
+FILENAME2 = "map.wav"
+FILENAME3 = "target.wav"
 
 rate1, wav_data1 = wavfile.read(FILENAME1)
 rate2, wav_data2 = wavfile.read(FILENAME2)
@@ -108,17 +108,18 @@ plt.plot(xaxis, yaxis)
 # find FFT of third audio sample
 L3 = len(wav_data3)
 ff3 = np.linspace(0, 8000, L3)
-f3 = np.linspace(0, 4000, L3 / 2)
+f3 = np.linspace(0, 4000, L3 // 2)
 xx3 = np.fft.fft(wav_data3)
-xx3 = np.abs(real(xx3)) / L3
-x3 = 2 * xx3[0:L3 / 2]
+xx3 = np.abs(real(xx3)) // L3
+x3 = 2 * xx3[0:L3 // 2]
 
 # push coefficients through regression model found from vector "coef"
 n = len(coef)
-ynew = np.linspace(0, 0, L3 / 2)
-for i in range(L3 / 2):
+ynew = np.linspace(0, 0, L3 // 2)
+for i in range(L3 // 2):
     for j in range(n):
         ynew[i] += coef[j] * x3[i] ** (n - j - 1)
 
 # plot the transformation of the coefficients
 plt.plot(f3, yaxis)
+plt.show()
