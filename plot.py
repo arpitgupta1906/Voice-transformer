@@ -6,7 +6,7 @@ import wave
 from pylab import *
 from scipy.io import wavfile
 
-FILENAME1 = "map.wav"
+FILENAME1 = "target.wav"
 
 rate, data = wavfile.read(FILENAME1)
 
