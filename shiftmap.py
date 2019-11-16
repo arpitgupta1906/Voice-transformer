@@ -11,7 +11,7 @@ def plot(data):
 
     #LINEAR SHIFT OF FREQUENCIES
 
-
+#in sbse pehle peak extraction krna hai
 
    
 """FILENAME1 = "input1.wav"
@@ -22,6 +22,7 @@ rate2, wav_data2 = wavfile.read(FILENAME2)  # isko dekhna hai
 rate3, wav_data3 = wavfile.read(FILENAME3)"""
 
  # shift in by t*8000/length (wave ) frequencies (right shift)
+# ye chutiyapa hai
 
 def shiftleft(wav_data1):
     """
@@ -57,7 +58,7 @@ def shiftright(wav_data1):
     y1 = np.fft.ifft(X) #inverse transform
     return y1
 
-
+#So consider the range frequencies of a source voice: (A;B) and a target voice's range of frequencies: (a; b). The desire is to shift frequencies: A --> a and B --> b.
 
 #IDENTIFY SHIFT LENGTHS BETWEEN PEAKS 
 
@@ -82,7 +83,7 @@ def shiftlengthbetweenpeaks(wav_data1,peaks1,peaks2):
         range2[i+1] = peaks2[i] - range2[i]
     print range1
     print range2
-    
+
 #find the scale to shrink or strech
     scale = range1/range2
     print scale
