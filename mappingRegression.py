@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-# from findpeaks import findpeaks
-from scipy.signal import find_peaks as findpeaks
+from findpeaks import findpeaks
 import pyaudio
 import wave
 from pylab import *
