@@ -14,4 +14,6 @@ instrument depending upon the type of input audio signal
 We will use various concepts to achive this,some of them are,
 fourier transform
 inverse fourier transform algorithm
+smoothing of wave
+peak extraction
 dynamic time warping
