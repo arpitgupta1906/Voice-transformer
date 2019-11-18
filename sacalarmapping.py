@@ -3,13 +3,22 @@ import numpy as np
 from findpeaks import findpeaks
 import pyaudio
 import wave
-from smoothing import smoothing
+# from smoothing import smoothing
 from pylab import *
 from scipy.io import wavfile
 
 
 def plot(data):
     plt.plot(data, color='steelblue')
+
+
+def smoothing(wav_data):
+    r = 3
+    wav = np.zeros(len(wav_data))
+    for i in range(r, len(wav) - r):
+        wav[i] = sum(wav_data[i - r:i + r + 1]) / (2 * r + 1)
+
+    return wav
 
 
 FILENAME1 = "source.wav"
@@ -21,7 +30,7 @@ rate3, wav_data3 = wavfile.read(FILENAME3)
 
 wav1 = smoothing(wav_data1)
 wav2 = smoothing(wav_data2)
-wav3=smoothing(wav_data3)
+wav3 = smoothing(wav_data3)
 
 L1 = len(wav1)
 f1 = np.linspace(0, 8000, L1)

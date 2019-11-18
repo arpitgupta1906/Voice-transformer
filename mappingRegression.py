@@ -5,6 +5,7 @@ import pyaudio
 import wave
 from pylab import *
 from scipy.io import wavfile
+# from smoothing import smoothing
 
 
 def plot(data):
@@ -48,7 +49,7 @@ def regressionCoefficients(wav_data, thres):
 
     # plot peaks
     plt.plot(f1[peaks1], x1[peaks1], 'ro')
-    # plt.show()
+    plt.show()
     freq1 = f1[peaks1]
 
     # Regression Coefficients
@@ -67,8 +68,8 @@ rate2, wav_data2 = wavfile.read(FILENAME2)
 rate3, wav_data3 = wavfile.read(FILENAME3)
 
 # coeficients of regression
-coef1 = regressionCoefficients(wav_data1, 0.2)
-coef2 = regressionCoefficients(wav_data2, 0.22)
+coef1 = regressionCoefficients(wav_data1, 0.01)
+coef2 = regressionCoefficients(wav_data2, 0.3)
 
 # include end points of regression
 n = len(coef1)
@@ -81,7 +82,7 @@ C2[n + 1] = 1.2 * C2[n]
 
 # plot coefficients
 plt.plot(C1, C2, 'o')
-
+plt.show()
 # Construct polynomial of order n-1
 X = np.asmatrix(C1)
 Y = np.asmatrix(C2)
@@ -93,6 +94,9 @@ A = np.asmatrix(A)
 for i in range(0, n):
     for j in range(0, n):
         A[i, j] = X[0, i] ** (n - j - 1)
+
+print(A)
+print(b)
 coef = A**(-1)*b
 
 # plot best fit line to coefficients
