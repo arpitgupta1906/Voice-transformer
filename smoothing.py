@@ -1,7 +1,7 @@
 import numpy as np
 
+
 def smoothing(wav_data):
-    """ parameter wavedata"""
     r = 3
     wav = np.zeros(len(wav_data))
     for i in range(r, len(wav) - r):

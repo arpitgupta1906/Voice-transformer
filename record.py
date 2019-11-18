@@ -8,31 +8,31 @@ CHANNELS = 1
 RATE = 8000
 RECORD_SECONDS = 4
 
-FILENAME1 = "output1.wav"
+FILENAME1 = "target.wav"
 
 
-def record():
-    p = pyaudio.PyAudio()
 
-    stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
+p = pyaudio.PyAudio()
 
-    print("*_recording")
+stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
 
-    frames = []
+print("*_recording")
 
-    for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
-        data = stream.read(CHUNK)
-        frames.append(data)
+frames = []
 
-    print("*_done_recording")
+for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
+    data = stream.read(CHUNK)
+    frames.append(data)
 
-    stream.stop_stream()
-    stream.close()
-    p.terminate()
+print("*_done_recording")
 
-    wf = wave.open(FILENAME1, 'wb')
-    wf.setnchannels(CHANNELS)
-    wf.setsampwidth(p.get_sample_size(FORMAT))
-    wf.setframerate(RATE)
-    wf.writeframes(b''.join(frames))
-    wf.close()
+stream.stop_stream()
+stream.close()
+p.terminate()
+
+wf = wave.open(FILENAME1, 'wb')
+wf.setnchannels(CHANNELS)
+wf.setsampwidth(p.get_sample_size(FORMAT))
+wf.setframerate(RATE)
+wf.writeframes(b''.join(frames))
+wf.close()
