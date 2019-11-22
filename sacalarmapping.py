@@ -32,6 +32,7 @@ wav1 = smoothing(wav_data1)
 wav2 = smoothing(wav_data2)
 wav3 = smoothing(wav_data3)
 
+
 L1 = len(wav1)
 f1 = np.linspace(0, 8000, L1)
 x1 = np.fft.fft(wav1)
@@ -72,5 +73,3 @@ ifftplot=smoothing(ifftplot)
 plt.plot(ifftplot)
 plt.show()
 
-
-# Take IFFT of x3
