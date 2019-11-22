@@ -3,11 +3,11 @@ from cmath import exp, pi
 import matplotlib.pyplot as plt
 from scipy.io import wavfile
 from numpy.compat import integer_types
-from numpy.core.overrides import integer
+# from numpy.core.overrides import integer
 from numpy.core import empty, arange
 from pylab import *
 
-integer_types = integer_types + (integer,)
+# integer_types = integer_types + (integer,)
 
 
 def fftfreq(n, d=1.0):
@@ -76,39 +76,20 @@ def plot(file_name):
     p2 = p2[0:mUniquePts]
     p2 = abs(p2)
 
-
-'''
-Left Channel
-'''
     p = p / float(n)
-    # scale by the number of points so that
-                # the magnitude does not depend on the length
-                # of the signal or on its sampling frequency
-    p = p**2  # square it to get the power
-
-
-# multiply by two (see technical document for details)
-# odd nfft excludes Nyquist point
-    if n % 2 > 0:  # we've got odd number of points fft
+    p = p**2  
+    if n % 2 > 0:  
         p[1:len(p)] = p[1:len(p)] * 2
     else:
-        # we've got even number of points fft
         p[1:len(p) - 1] = p[1:len(p) - 1] * 2
 
-     freqArray = arange(0, nUniquePts, 1.0) * (sampFreq / n);
-     plt.plot(freqArray/1000, 10*log10(p), color='k')
-     plt.xlabel('LeftChannel_Frequency (kHz)')
-     plt.ylabel('LeftChannel_Power (dB)')
-     plt.show()
-
-'''
-Right Channel
-'''
-    p2 = p2 / float(m)
-    # scale by the number of points so that
-             # the magnitude does not depend on the length 
-             # of the signal or on its sampling frequency  
-    p2 = p2**2  # square it to get the power 
+    freqArray = arange(0, nUniquePts, 1.0) * (sampFreq / n)
+    plt.plot(freqArray/1000, 10*log10(p), color='k')
+    plt.xlabel('LeftChannel_Frequency (kHz)')
+    plt.ylabel('LeftChannel_Power (dB)')
+    plt.show()
+    p2 = p2 / float(m) 
+    p2 = p2**2  
 
 
 
