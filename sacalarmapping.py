@@ -63,7 +63,7 @@ L3 = len(wav3)
 f3 = np.linspace(0, 8000, L3)
 x3 = np.fft.fft(wav3)
 x3 = x3 * Ratio
-ifftplot=np.fft.irfft(x3)
+ifftplot=np.fft.ifft(x3)
 # ifftplot=smoothing(ifftplot)
 filteredwrite=np.round(ifftplot).astype('int16')
 wavfile.write('pleasework.wav', rate3, filteredwrite)
