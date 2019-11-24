@@ -1,4 +1,4 @@
-def please(a,b,c):
+def linspace(a,b,c):
     d=[]
     k=(b-a)/(c-1)
     for i in range(c):
