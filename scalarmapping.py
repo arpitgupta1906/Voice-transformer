@@ -48,7 +48,6 @@ f2 = linspace(0, 8000, L2)
 x2 = transform(wav2,False)
 X2 = np.abs(x2) / L2 
  # magnitude of  coefficient of FFT of target voice to be replicated
-print(str(x2))
 ratio = abs(x2) / abs(x1)  # ratio of coefficients r=d/c
 Freq = linspace(0, 8000, L1)
 plt.plot(Freq, ratio)  # plot ratio over double sided FFT spectrum
@@ -75,7 +74,7 @@ x3 = x3 * Ratio
 ifftplot=transform(x3,True)
 # ifftplot=smoothing(ifftplot)
 filteredwrite=np.round(ifftplot).astype('int16')
-wavfile.write('target.wav', rate3, filteredwrite)
+wavfile.write('final.wav', rate3, filteredwrite)
 ifftplot=smoothing(ifftplot)
 
 plt.plot(ifftplot)
