@@ -14,15 +14,15 @@ def plot(data):
 #in sbse pehle peak extraction krna hai
 
    
-"""FILENAME1 = "input1.wav"
-FILENAME2 = "output1.wav"
-FILENAME3 = "third1.wav"
+FILENAME1 = "source.wav"
+FILENAME2 = "target.wav"
+FILENAME3 = "thirdsample.wav"
 rate1, wav_data1 = wavfile.read(FILENAME1)
-rate2, wav_data2 = wavfile.read(FILENAME2)  # isko dekhna hai
-rate3, wav_data3 = wavfile.read(FILENAME3)"""
+rate2, wav_data2 = wavfile.read(FILENAME2)  
+rate3, wav_data3 = wavfile.read(FILENAME3)
 
  # shift in by t*8000/length (wave ) frequencies (right shift)
-# ye chutiyapa hai
+
 
 def shiftleft(wav_data1):
     """
@@ -30,13 +30,13 @@ def shiftleft(wav_data1):
     this takes a parameter wav_data1 which is already definesd earlier
     """
     t = 300
-    Y = np.fft.fft(wav_data1)
+    Y = transform(wav_data1)
     L = len(Y)/2
     X = np.zeros(2*L)
     X =X.astype(dtype=np.complex)
     X[0:L-t] = Y[t:L]
     X[t+L:2*L] = Y[L:2*L-t]
-    y1 = np.fft.ifft(X) #inverse transform
+    y1 = transform(X) #inverse transform
     return y1
 
 
@@ -49,13 +49,13 @@ def shiftright(wav_data1):
 
     """
     t = 300
-    Y = np.fft.fft(wav_data1)
+    Y = transform(wav_data1,True)
     L = len(Y)/2
     X = np.zeros(2*L)
     X =X.astype(dtype=np.complex)
     X[t:L] = Y[0:L-t]
     X[L:2*L-t] = Y[L+t:2*L]
-    y1 = np.fft.ifft(X) #inverse transform
+    y1 = transform(X,True) #inverse transform
     return y1
 
 #So consider the range frequencies of a source voice: (A;B) and a target voice's range of frequencies: (a; b). The desire is to shift frequencies: A --> a and B --> b.
@@ -109,7 +109,7 @@ def shiftonlyrangeofpeaks(peaks1,peaks2,wav_data3,):
 
     """
     n = len(peaks1)
-    X3 = np.fft.fft(wav_data3)
+    X3 = transform(wav_data3)
     L = len(X3)/2
     new = np.zeros(L)
     new = new.astype(dtype = np.complex)
