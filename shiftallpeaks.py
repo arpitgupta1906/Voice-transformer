@@ -1,5 +1,7 @@
 import numpy as np
-
+from zeros import zeros
+from linspace import linspace
+from fft import transform
 
 # this only shifts for the single sided fft
 # the data will need to be made symmetric afterwards
@@ -11,16 +13,16 @@ def shiftallpeaks(peaks1, peaks2, wav_data3):
     """
 
     n = len(peaks1)
-    x3 = np.fft.fft(wav_data3)
-    new = np.zeros(len(x3) // 2)
+    x3 = transform(wav_data3,False)
+    new = zeros(len(x3) // 2)
     new = new.astype(dtype=np.complex)
 
-    Peaks1 = np.zeros(n + 2)
+    Peaks1 = zeros(n + 2)
     Peaks1[1:n + 1] = peaks1
     Peaks1[n + 1] = len(x3) // 2
     Peaks1 = Peaks1.astype(np.int16)
 
-    Peaks2 = np.zeros(n + 2)
+    Peaks2 = zeros(n + 2)
     Peaks2[1:n + 1] = peaks2
     Peaks2[n + 1] = len(x3) // 2
 
